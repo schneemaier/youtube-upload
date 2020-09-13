@@ -20,6 +20,8 @@ import sys
 import optparse
 import collections
 import webbrowser
+# Adding time to test fix for https://github.com/tokland/youtube-upload/issues/305
+from time import sleep 
 from io import open
 
 import googleapiclient.errors
@@ -200,6 +202,9 @@ def run_main(parser, options, args, output=sys.stdout):
             video_id = upload_youtube_video(youtube, options, video_path, len(args), index)
             video_url = WATCH_VIDEO_URL.format(id=video_id)
             debug("Video URL: {0}".format(video_url))
+            # Adding sleep(5) to test fix for https://github.com/tokland/youtube-upload/issues/305
+            debug("Sleep 5 sec, to test https://github.com/tokland/youtube-upload/issues/305")
+            sleep(5)
             if options.open_link:
                 open_link(video_url)  # Opens the Youtube Video's link in a webbrowser
 
